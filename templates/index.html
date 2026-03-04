@@ -10,7 +10,13 @@
 
     <hr>
 
-    
+    <h3>Stored Names:</h3>
+    <ul>
+        <!-- This loop runs for every name passed from app.py -->
+        {% for name in names %}
+            <li>{{ name }}</li>
+        {% endfor %}
+
     </ul>
 </body>
 </html>
