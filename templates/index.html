@@ -2,7 +2,7 @@
 <html>
 <body>
     <h2>Store Information</h2>
-    <!-- Form to add new names -->
+    
     <form action="/save" method="POST">
         <input type="text" name="user_content" placeholder="Enter a name...">
         <button type="submit">Save to Database</button>
@@ -10,12 +10,7 @@
 
     <hr>
 
-    <h3>Stored Names:</h3>
-    <ul>
-        <!-- This loop runs for every name passed from app.py -->
-        {% for name in names %}
-            <li>{{ name[0] }}</li>
-        {% endfor %}
+    
     </ul>
 </body>
 </html>

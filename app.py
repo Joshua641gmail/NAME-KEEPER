@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+
+
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -8,19 +10,19 @@ def home():
     # Read stored data to display it
     try:
         with open('storage.txt', 'r') as f:
-            data = f.read()
+            names = f.read().strip().split('\n') if f.read().strip() else []
     except FileNotFoundError:
-        data = "No data yet."
-    return render_template('index.html', saved_data=data)
+        names = []
+    return render_template('index.html', names=names)
 
 # Route to handle form submission (Storage capability)
-@app.route('/submit', methods=['POST'])
-def submit():
-    user_data = request.form.get('data')
-    # Save data to a file
-    with open('storage.txt', 'a') as f:
-        f.write(user_data + '\n')
-    return 'Data Saved! <a href="/">Go Back</a>'
+@app.route('/save', methods=['POST'])
+def save():
+    user_data = request.form.get('user_content')
+    if user_data:
+        with open('storage.txt', 'a') as f:
+            f.write(user_data + '\n')
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
