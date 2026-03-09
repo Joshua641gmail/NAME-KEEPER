@@ -20,9 +20,10 @@ def home():
 @app.route('/save', methods=['POST'])
 def save():
     user_data = request.form.get('user_content')
-    if user_data:
+
+    if user_data and user_data.strip():
         with open('storage.txt', 'a') as f:
-            f.write(user_data + '\n')
+            f.write(user_data.strip() + '\n')
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
