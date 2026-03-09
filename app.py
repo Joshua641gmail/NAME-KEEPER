@@ -26,5 +26,10 @@ def save():
             f.write(user_data.strip() + '\n')
     return redirect(url_for('home'))
 
+@app.route('/clear', methods=['POST'])
+def clear():
+    open('storage.txt', 'w').close()
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
     app.run(debug=True)
