@@ -10,7 +10,8 @@ def home():
     # Read stored data to display it
     try:
         with open('storage.txt', 'r') as f:
-            names = f.read().strip().split('\n') if f.read().strip() else []
+            content = f.read().strip()
+            names = content.split('\n') if content else []
     except FileNotFoundError:
         names = []
     return render_template('index.html', names=names)
