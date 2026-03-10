@@ -17,6 +17,7 @@
     <h3>Saved Entries</h3>
     <ul>
         <!-- This loop runs for every name passed from app.py -->
+        <p>Total entries: {{ count }}</p>
         {% for name in names %}
             <li>{{ name }}</li>
         {% endfor %}

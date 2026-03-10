@@ -12,6 +12,8 @@ def home():
         with open('storage.txt', 'r') as f:
             content = f.read().strip()
             names = content.split('\n') if content else []
+            count = len(names)
+            return render_template('index.html', names=names, count=count)
     except FileNotFoundError:
         names = []
     return render_template('index.html', names=names)
