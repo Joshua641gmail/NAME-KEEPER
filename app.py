@@ -1,5 +1,5 @@
 from tkinter.font import names
-
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
@@ -24,8 +24,10 @@ def save():
     user_data = request.form.get('user_content')
 
     if user_data and user_data.strip():
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with open('storage.txt', 'a') as f:
             f.write(user_data.strip() + '\n')
+            f.write(f"{user_data.strip()} | {timestamp}\n")
     return redirect(url_for('home'))
 
 @app.route('/clear', methods=['POST'])
